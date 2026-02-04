@@ -1,9 +1,9 @@
 // Charger les variables d'environnement depuis .env ou Railway
 require('dotenv').config();
 
-const { Client, GatewayIntentBits, PermissionsBitField, ChannelType } = require('discord.js');
+const { Client, GatewayIntentBits, ChannelType } = require('discord.js');
 
-// Création du client Discord avec les intents nécessaires
+// Création du client Discord
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -19,7 +19,7 @@ client.once('ready', () => {
 client.on('messageCreate', async message => {
   if (message.author.bot) return;
 
-  // --- Commande !setup pour configurer tout le serveur ---
+  // --- Commande !setup ---
   if (message.content === "!setup") {
     const guild = message.guild;
 
@@ -104,5 +104,5 @@ client.on('messageCreate', async message => {
   }
 });
 
-// --- Connexion sécurisée via token depuis .env ou Environment Variables ---
+// --- Connexion sécurisée avec token depuis .env ou Environment Variables ---
 client.login(process.env.TOKEN);
